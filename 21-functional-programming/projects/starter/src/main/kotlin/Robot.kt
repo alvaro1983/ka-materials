@@ -35,8 +35,10 @@ class Robot(val name: String) {
 
     private var health: Int = 100
 
+    private var random: Random = Random()
+
     init {
-        strength = Random().nextInt(100) + 10
+        strength = random.randomStrength()
         report("Created (strength $strength)")
     }
 
@@ -44,8 +46,8 @@ class Robot(val name: String) {
         println("$name: \t$message")
     }
 
-    private fun damage(damage: Int) {
-        val blocked = Random().nextBoolean()
+    fun damage(damage: Int) {
+        val blocked = random.randomBlock()
 
         if (blocked) {
             report("Blocked attack")
@@ -61,7 +63,7 @@ class Robot(val name: String) {
     }
 
     fun attack(robot: Robot) {
-        val damage = (strength * 0.1 + Random().nextInt(10)).toInt()
+        val damage = random.randomDamage(strength)
         robot.damage(damage)
     }
 }
