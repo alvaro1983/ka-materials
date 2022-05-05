@@ -32,15 +32,14 @@ object Battlefield {
     fun beginBattle(
         firstRobot: Robot,
         secondRobot: Robot,
-        onBattleEnded: (Robot) -> Unit
+        onBattleEnded: Robot.() -> Unit
     ) {
         var winner: Robot? = null
         battle(firstRobot, secondRobot)
         winner = if (firstRobot.isAlive) firstRobot else secondRobot
-        winner.report("Is the winner")
-        onBattleEnded(winner)
+        winner.onBattleEnded()
     }
-
+    
     fun battle(firstRobot: Robot, secondRobot: Robot) {
         firstRobot.attack(secondRobot)
 

@@ -31,7 +31,6 @@
 fun main() {
     val firstRobot = Robot("Experimental Space Navigation Droid")
     val secondRobot = Robot("Extra-Terrestrial Air Safety Droid")
-    Battlefield.beginBattle(firstRobot, secondRobot) {
-        it.report("Win!")
-    }
+    val reportOnWin = fun(robot: Robot) { robot.report("Win!") }
+    Battlefield.beginBattle(firstRobot, secondRobot, reportOnWin)
 }
